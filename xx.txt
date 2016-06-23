@@ -1,4 +1,4 @@
-hello
+windows hello
 
 
 0400 add al,0x00
