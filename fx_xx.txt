@@ -1,0 +1,24 @@
+f390 pause
+
+f6c000 test al,0x00
+f6c100 test cl,0x00
+f6c200 test dl,0x00
+f6c300 test bl,0x00
+f6c400 test ah,0x00
+f6c500 test ch,0x00
+f6c600 test dh,0x00
+f6c700 test bh,0x00
+
+
+
+ff7000 push word [bx+si+0]
+ff7100 push word [bx+di+0]
+ff7200 push word [bp+si+0]
+ff7300 push word [bp+di+0]
+ff7400 push word [si+0]
+ff7500 push word [di+0]
+ff7600 push word [bp+0]
+ff7700 push word [bx+0]
+
+
+

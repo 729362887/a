@@ -1,0 +1,75 @@
+
+29c0 sub ax,ax
+29c1 sub cx,ax
+29c2 sub dx,ax
+29c3 sub bx,ax
+29c4 sub sp,ax
+29c5 sub bp,ax
+29c6 sub si,ax
+29c7 sub di,ax
+
+29c8 sub ax,cx
+29c9 sub cx,cx
+29ca sub dx,cx
+29cb sub bx,cx
+29cc sub sp,cx
+29cd sub bp,cx
+29ce sub si,cx
+29cf sub di,cx
+
+29d0 sub ax,dx
+29d1 sub cx,dx
+29d2 sub dx,dx
+29d3 sub bx,dx
+29d4 sub sp,dx
+29d5 sub bp,dx
+29d6 sub si,dx
+29d7 sub di,dx
+
+29d8 sub ax,bx
+29d9 sub cx,bx
+29da sub dx,bx
+29db sub bx,bx
+29dc sub sp,bx
+29dd sub bp,bx
+29de sub si,bx
+29df sub di,bx
+
+
+29e0 sub ax,sp
+29e1 sub cx,sp
+29e2 sub dx,sp
+29e3 sub bx,sp
+29e4 sub sp,sp
+29e5 sub bp,sp
+29e6 sub si,sp
+29e7 sub di,sp
+
+29e8 sub ax,bp
+29e9 sub cx,bp
+29ea sub dx,bp
+29eb sub bx,bp
+29ec sub sp,bp
+29ed sub bp,bp
+29ee sub si,bp
+29ef sub di,bp
+
+29f0 sub ax,si
+29f1 sub cx,si
+29f2 sub dx,si
+29f3 sub bx,si
+29f4 sub sp,si
+29f5 sub bp,si
+29f6 sub si,si
+29f7 sub di,si
+
+29f8 sub ax,di
+29f9 sub cx,di
+29fa sub dx,di
+29fb sub bx,di
+29fc sub sp,di
+29fd sub bp,di
+29fe sub si,di
+29ff sub di,di
+
+

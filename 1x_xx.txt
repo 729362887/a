@@ -1,0 +1,270 @@
+1000 adc [bx+si],al
+1001 adc [bx+di],al
+1002 adc [bp+si],al
+1003 adc [bp+di],al
+1004 adc [si],al
+1005 adc [di],al
+1006
+1007 adc [bx],al
+
+1008 adc [bx+si],cl
+
+1010 adc [bx+si],dl
+
+1018 adc [bx+si],bl
+
+1020 adc [bx+si],ah
+
+1028 adc [bx+si],ch
+
+1030 adc [bx+si],dh
+
+1038 adc [bx+si],bh
+
+104000 adc [bx+si+0x00],al
+104100 adc [bx+di+0x00],al
+104200 adc [bp+si+0x00],al
+104300 adc [bp+di+0x00],al
+104400 adc [si+0x00],al
+104500 adc [di+0x00],al
+104600 adc [bp+0x00],al
+104700 adc [bx+0x00],al
+
+104800 adc [bx+si+0x00],cl
+
+105000 adc [bx+si+0x00],dl
+
+105800 adc [bx+si+0x00],bl
+
+106000 adc [bx+si+0x00],ah
+
+106800 adc [bx+si+0x00],ch
+
+107000 adc [bx+si+0x00],dh
+
+107800 adc [bx+si+0x00],bh
+
+10800000 adc [bx+si+0x0000],al
+
+10880000 adc [bx+si+0x0000],cl
+
+10900000 adc [bx+si+0x0000],dl
+
+10980000 adc [bx+si+0x0000],bl
+
+10a00000 adc [bx+si+0x0000],ah
+
+10a80000 adc [bx+si+0x0000],ch
+
+10b00000 adc [bx+si+0x0000],dh
+
+10b80000 adc [bx+si+0x0000],bh
+
+10c0 adc al,al
+10c1 adc cl,al
+10c2 adc dl,al
+10c3 adc bl,al
+10c4 adc ah,al
+10c5 adc ch,al
+10c6 adc dh,al
+10c7 adc bh,al
+
+10c8 adc al,cl
+
+10d0 adc al,dl
+
+10d8 adc al,bl
+
+10e0 adc al,ah
+
+10e8 adc al,ch
+
+10f0 adc al,dh
+
+10f8 adc al,bh
+
+1100 adc [bx+si],ax
+1101 adc [bx+di],ax
+1102 adc [bp+si],ax
+1103 adc [bp+di],ax
+1104 adc [si],ax
+1105 adc [di],ax
+1106
+1107 adc [bx],ax
+
+1108 adc [bx+si],cx
+
+1110 adc [bx+si],dx
+
+1118 adc [bx+si],bx
+
+1120 adc [bx+si],sp
+
+1128 adc [bx+si],bp
+
+1130 adc [bx+si],si
+
+1138 adc [bx+si],di
+
+114000 adc [bx+si+0x00],ax
+114100 adc [bx+di+0x00],ax
+114200 adc [bp+si+0x00],ax
+114300 adc [bp+di+0x00],ax
+114400 adc [si+0x00],ax
+114500 adc [di+0x00],ax
+114600 adc [bp+0x00],ax
+114700 adc [bx+0x00],ax
+
+114800 adc [bx+si+0x00],cx
+
+115000 adc [bx+si+0x00],dx
+
+115800 adc [bx+si+0x00],bx
+
+116000 adc [bx+si+0x00],sp
+
+116800 adc [bx+si+0x00],bp
+
+117000 adc [bx+si+0x00],si
+
+117800 adc [bx+si+0x00],di
+
+11800000 adc [bx+si+0x0000],ax
+11810000 adc [bx+di+0x0000],ax
+11820000 adc [bp+si+0x0000],ax
+11830000 adc [bp+di+0x0000],ax
+11840000 adc [si+0x0000],ax
+11850000 adc [di+0x0000],ax
+11860000 adc [bp+0x0000],ax
+11870000 adc [bx+0x0000],ax
+
+11880000 adc [bx+si+0x0000],cx
+
+11900000 adc [bx+si+0x0000],dx
+
+11980000 adc [bx+si+0x0000],bx
+
+11a00000 adc [bx+si+0x0000],sp
+
+11a80000 adc [bx+si+0x0000],bp
+
+11b00000 adc [bx+si+0x0000],si
+
+11b80000 adc [bx+si+0x0000],di
+
+11c0 adc ax,ax
+11c1 adc cx,ax
+11c2 adc dx,ax
+11c3 adc bx,ax
+11c4 adc sp,ax
+11c5 adc bp,ax
+11c6 adc si,ax
+11c7 adc di,ax
+
+11c8 adc ax,cx
+
+11d0 adc ax,dx
+
+11d8 adc ax,bx
+
+11e0 adc ax,sp
+
+11e8 adc ax,bp
+
+11f0 adc ax,si
+
+11f8 adc ax,di
+
+1200 adc al,[bx+si]
+1201 adc al,[bx+di]
+1202 adc al,[bp+si]
+1203 adc al,[bp+di]
+1204 adc al,[si]
+1205 adc al,[di]
+1206
+1207 adc al,[bx]
+
+1208 adc cl,[bx+si]
+
+1210 adc dl,[bx+si]
+
+1218 adc bl,[bx+si]
+
+1220 adc ah,[bx+si]
+
+1228 adc ch,[bx+si]
+
+1230 adc dh,[bx+si]
+
+1238 adc bh,[bx+si]
+
+124000 adc al,[bx+si+0x00]
+124100 adc al,[bx+di+0x00]
+124200 adc al,[bp+si+0x00]
+124300 adc al,[bp+di+0x00]
+124400 adc al,[si+0x00]
+124500 adc al,[di+0x00]
+124600 adc al,[bp+0x00]
+124700 adc al,[bx+0x00]
+
+124800 adc cl,[bx+si+0x00]
+
+125000 adc dl,[bx+si+0x00]
+
+125800 adc bl,[bx+si+0x00]
+
+126000 adc ah,[bx+si+0x00]
+
+126800 adc ch,[bx+si+0x00]
+
+127000 adc dh,[bx+si+0x00]
+
+127800 adc bh,[bx+si+0x00]
+
+12800000 adc al,[bx+si+0x0000]
+
+12880000 adc cl,[bx+si+0x0000]
+
+12900000 adc dl,[bx+si+0x0000]
+
+12980000 adc bl,[bx+si+0x0000]
+
+12a00000 adc ah,[bx+si+0x0000]
+
+12a80000 adc ch,[bx+si+0x0000]
+
+12b00000 adc dh,[bx+si+0x0000]
+
+12b80000 adc bh,[bx+si+0x0000]
+
+12c0 adc al,al
+12c1 adc al,cl
+12c2 adc al,dl
+12c3 adc al,bl
+12c4 adc al,ah
+12c5 adc al,ch
+12c6 adc al,dh
+12c7 adc al,bh
+
+12c8 adc cl,al
+
+12d0 adc dl,al
+
+12d8 adc bl,al
+
+12e0 adc ah,al
+
+12e8 adc ch,al
+
+12f0 adc dh,al
+
+12f8 adc bh,al
+
+1300 adc ax,[bx+si]
+
+
+
+
+
+
+

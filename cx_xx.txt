@@ -1,0 +1,80 @@
+c1c000 rol ax,0x00
+c1c100 rol cx,0x00 
+c1c200 rol dx,0x00
+c1c300 rol bx,0x00
+c1c400 rol sp,0x00
+c1c500 rol bp,0x00
+c1c600 rol si,0x00
+c1c700 rol di,0x00
+
+c1c800 ror ax,0x00
+c1c900 ror cx,0x00
+c1ca00 ror dx,0x00
+c1cb00 ror bx,0x00
+c1cc00 ror sp,0x00
+c1cd00 ror bp,0x00
+c1ce00 ror si,0x00
+c1cf00 ror di,0x00
+
+c1d000 rcl ax,0x00
+c1d100
+c1d200
+c1d300
+c1d400
+c1d500
+c1d600
+c1d700
+
+c1d800 rcr ax,0x00
+c1d900
+c1da00
+c1db00
+c1dc00
+c1dd00
+c1de00
+c1df00
+
+c2e000 shl
+c2e100
+c2e200
+c2e300
+c2e400
+c2e500
+c2e600
+c2e700
+
+c2e800 shr
+c2e900
+c2ea00
+c2eb00
+c2ec00
+c2ed00
+c2ee00
+c2ef00
+
+c2f000 sal
+
+c2f800 sar
+
+c55000 lds dx,[bx+si+0x00]
+c55100 lds dx,[bx+di+0x00]
+c55200 lds dx,[bp+si+0x00]
+c55300 lds dx,[bp+di+0x00]
+c55400 lds dx,[si+0x00]
+c55500 lds dx,[di+0x00]
+c55600 lds dx,[bp+0x00]
+c55700 lds dx,[bx+0x00]
+
+c55800 lds bx,[bx+si+0x00]
+c55900 lds bx,[bx+di+0x00]
+c55a00 lds bx,[bp+si+0x00]
+c55b00 lds bx,[bp+di+0x00]
+c55c00 lds bx,[si+0x00]
+c55d00 lds bx,[di+0x00]
+c55e00 lds bx,[bp+0x00]
+c55f00 lds bx,[bx+0x00]
+
+
+
+
+

@@ -1,0 +1,23 @@
+00f6 add dh,dh
+
+00c0 add al,al
+00c1 add cl,al
+00c2 add dl,al
+00c3 add bl,al
+00c4 add ah,al
+00c5 add ch,al
+00c6 add dh,al
+00c7 add bh,al
+
+00c8 add al,cl
+00c9 add cl,cl
+00ca add dl,cl
+00cb add bl,cl
+00cc add ah,cl
+00cd add ch,cl
+00ce add dh,cl
+00cf add bh,cl
+
+
+
+
