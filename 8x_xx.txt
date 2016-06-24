@@ -259,10 +259,51 @@
 88ee mov dh,ch
 88ef mov bh,ch
 
+894000 mov [bx+si+0x00],ax
 
+894800 mov [bx+si+0x00],cx
 
-897500
+895000 mov [bx+si+0x00],dx
 
+895800 mov [bx+si+0x00],bx
+
+896000 mov [bx+si+0x00],sp
+
+896800 mov [bx+si+0x00],bp
+
+897000 mov [bx+si+0x00],si
+897100 mov [bx+di+0x00],si
+897200 mov [bp+si+0x00],si
+897300 mov [bp+di+0x00],si
+897400 mov [si+0x00],si
+897500 mov [di+0x00],si
+897600 mov [bp+0x00],si
+897700 mov [bx+0x00],si
+
+897800 mov [bx+si+0x00],di
+
+89800000 mov [bx+si+0x0000],ax
+89810000 mov [bx+di+0x0000],ax
+89820000 mov [bp+si+0x0000],ax
+89830000 mov [bp+di+0x0000],ax
+89840000 mov [si+0x0000],ax
+89850000 mov [di+0x0000],ax
+89860000 mov [bp+0x0000],ax
+89870000 mov [bx+0x0000],ax
+
+89880000 mov [bx+si+0x0000],cx
+
+89900000 mov [bx+si+0x0000],dx
+
+89980000 mov [bx+si+0x0000],bx
+
+89a00000 mov [bx+si+0x0000],sp
+
+89a80000 mov [bx+si+0x0000],bp
+
+89b00000 mov [bx+si+0x0000],si
+
+89b80000 mov [bx+si+0x0000],di
 
 
 89c0 mov ax,ax
