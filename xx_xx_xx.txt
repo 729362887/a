@@ -23,6 +23,11 @@
 
 64890d_00000000 mov dword fs:[0x00000000],ecx
 
+64ff15_00000000 call dword fs:[0x00000000]
+ff15_00000000 cakk dword ds:[0x00000000]
+
+
+
 
 
 

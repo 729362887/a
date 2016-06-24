@@ -1,0 +1,632 @@
+800000 add byte [bx+si],0x00
+
+
+80f000 xor al,0x00
+80f100 xor cl,0x00
+80f200 xor dl,0x00
+80f300 xor bl,0x00
+80f400 xor ah,0x00
+80f500 xor ch,0x00
+80f600 xor dh,0x00
+80f700 xor bh,0x00
+
+80f800 cmp al,0x00
+80f900 cmp cl,0x00
+80fa00 cmp dl,0x00
+80fb00 cmp bl,0x00
+80fc00 cmp ah,0x00
+80fd00 cmp ch,0x00
+80fe00 cmp dh,0x00
+80ff00 cmp bh,0x00
+
+81000000 add word [bx+si],0x0000
+81010000 add word [bx+di],0x0000
+81020000 add word [bp+si],0x0000
+81030000 add word [bp+di],0x0000
+81040000 add word [si],0x0000
+81050000 add word [di],0x0000
+81060000
+81070000 add word [bx],0x0000
+
+81080000 or word [bx+si],0x0000
+81090000 or word [bx+di],0x0000
+810a0000 or word [bp+si],0x0000
+810b0000 or word [bp+di],0x0000
+810c0000 or word [si],0x0000
+810d0000 or word [di],0x0000
+810e0000
+810f0000 or word [bx],0x0000
+
+81100000 adc word [bx+si],0x0000
+
+81180000 sbb word [bx+si],0x0000
+
+81200000 and word [bx+si],0x0000
+
+81280000 sub word [bx+si],0x0000
+
+81300000 xor word [bx+si],0x0000
+
+81380000 cmp word [bx+si],0x0000
+
+8140000000 add word [bx+si+0x00],0x0000
+8141000000 add word [bx+di+0x00],0x0000
+8142000000 add word [bp+si+0x00],0x0000
+8143000000 add word [bp+di+0x00],0x0000
+8144000000 add word [si+0x00],0x0000
+8145000000 add word [di+0x00],0x0000
+8146000000 add word [bp+0x00],0x0000
+8147000000 add word [bx+0x00],0x0000
+
+8148000000 or word [bx+si+0x00],0x0000
+
+8150000000 adc word [bx+si+0x00],0x0000
+
+8158000000 sbb word [bx+si+0x00],0x0000
+
+8160000000 and word [bx+si+0x00],0x0000
+
+8168000000 sub word [bx+si+0x00],0x0000
+
+8170000000 xor word [bx+si+0x00],0x0000
+
+8178000000 cmp word [bx+si+0x00],0x0000
+
+818000000000 add word [bx+si+0x0000],0x0000
+818100000000 add word [bx+di+0x0000],0x0000
+818200000000 add word [bp+si+0x0000],0x0000
+818300000000 add word [bp+di+0x0000],0x0000
+818400000000 add word [si+0x0000],0x0000
+818500000000 add word [di+0x0000],0x0000
+818600000000 add word [bp+0x0000],0x0000
+818700000000 add word [bx+0x0000],0x0000
+
+818800000000 or word [bx+si+0x0000],0x0000
+
+819000000000 adc word [bx+si+0x0000],0x0000
+
+819800000000 sbb word [bx+si+0x0000],0x0000
+
+81a000000000 and word [bx+si+0x0000],0x0000
+
+81a800000000 sub word [bx+si+0x0000],0x0000
+
+81b000000000 xor word [bx+si+0x0000],0x0000
+
+81b800000000 cmp word [bx+si+0x0000],0x0000
+
+81c00000 add ax,0x0000
+81c10000 add cx,0x0000
+81c20000 add dx,0x0000
+81c30000 add bx,0x0000
+81c40000 add sp,0x0000
+81c50000 add bp,0x0000
+81c60000 add si,0x0000
+81c70000 add di,0x0000
+
+81c80000 or ax,0x0000
+
+81d00000 adc ax,0x0000
+
+81d80000 sbb ax,0x0000
+
+81e00000 and ax,0x0000
+
+81e80000 sub ax,0x0000
+
+81f00000 xor ax,0x0000
+
+81f80000 cmp ax,0x0000
+
+
+
+
+83c000 add ax,0x00
+83c100 add cx,0x00
+83c200 add dx,0x00
+83c300 add bx,0x00
+83c400 add sp,0x00
+83c500 add bp,0x00
+83c600 add si,0x00
+83c700 add di,0x00
+
+83c800 or ax,0x00
+83c900 or cx,0x00
+83ca00 or dx,0x00
+83cb00 or bx,0x00
+83cc00 or sp,0x00
+83cd00 or bp,0x00
+83ce00 or si,0x00
+83cf00 or di,0x00
+
+83d000 adc ax,0x00
+
+83d800 sbb ax,0x00
+
+83e000 and ax,0x00
+
+83e800 sub ax,0x00
+
+83f000 xor ax,0x00
+
+83f800 cmp ax,0x00
+
+84c0 test al,al
+84c1 test al,cl
+84c2 test al,dl
+84c3 test al,bl
+84c4 test al,ah
+84c5 test al,ch
+84c6 test al,dh
+84c7 test al,bh
+
+84c8 test cl,al
+
+84d0 test dl,al
+
+84d8 test bl,al
+
+84e0 test ah,al
+
+84e8 test ch,al
+
+84f0 test dh,al
+
+84f8 test bh,al
+
+8500 test [bx+si],ax
+8501 test [bx+di],ax
+8502 test [bp+si],ax
+8503 test [bp+di],ax
+8504 test [si],ax
+8505 test [di],ax
+8506 
+8507 test [bx],ax
+
+8508 test [bx+si],cx
+
+8510 test [bx+si],dx
+
+8518 test [bx+si],bx
+
+8520 test [bx+si],sp
+
+8528 test [bx+si],bp
+
+8530 test [bx+si],si
+
+8538 test [bx+si],di
+
+
+884000 mov [bx+si+0x00],al
+884100 mov [bx+di+0x00],al
+884200 mov [bp+si+0x00],al
+884300 mov [bp+di+0x00],al
+884400 mov [si+0x00],al
+884500 mov [di+0x00],al
+884600 mov [bp+0x00],al
+884700 mov [bx+0x00],al
+
+884800 mov [bx+si+0x00],cl
+
+885000 mov [bx+si+0x00],dl
+
+885800 mov [bx+si+0x00],bl
+
+886000 mov [bx+si+0x00],ah
+
+886800 mov [bx+si+0x00],ch
+
+887000 mov [bx+si+0x00],dh
+
+887800 mov [bx+si+0x00],bh
+
+
+
+88d0 mov al,dl
+88d1 mov cl,dl
+88d2 mov dl,dl
+88d3 mov bl,dl
+88d4 mov ah,dl
+88d5 mov ch,dl
+88d6 mov dh,dl
+88d7 mov bh,dl
+
+88d8 mov al,bl
+88d9 mov cl,bl
+88da mov dl,bl
+88db mov bl,bl
+88dc mov ah,bl
+88dd mov ch,bl
+88de mov dh,bl
+88df mov bh,bl
+
+88e0 mov al,ah
+88e1 mov cl,ah
+88e2 mov dl,ah
+88e3 mov bl,ah
+88e4 mov ah,ah
+88e5 mov ch,ah
+88e6 mov dh,ah
+88e7 mov bh,ah
+
+88e8 mov al,ch
+88e9 mov cl,ch
+88ea mov dl,ch
+88eb mov bl,ch
+88ec mov ah,ch
+88ed mov ch,ch
+88ee mov dh,ch
+88ef mov bh,ch
+
+894000 mov [bx+si+0x00],ax
+
+894800 mov [bx+si+0x00],cx
+
+895000 mov [bx+si+0x00],dx
+
+895800 mov [bx+si+0x00],bx
+
+896000 mov [bx+si+0x00],sp
+
+896800 mov [bx+si+0x00],bp
+
+897000 mov [bx+si+0x00],si
+897100 mov [bx+di+0x00],si
+897200 mov [bp+si+0x00],si
+897300 mov [bp+di+0x00],si
+897400 mov [si+0x00],si
+897500 mov [di+0x00],si
+897600 mov [bp+0x00],si
+897700 mov [bx+0x00],si
+
+897800 mov [bx+si+0x00],di
+
+89800000 mov [bx+si+0x0000],ax
+89810000 mov [bx+di+0x0000],ax
+89820000 mov [bp+si+0x0000],ax
+89830000 mov [bp+di+0x0000],ax
+89840000 mov [si+0x0000],ax
+89850000 mov [di+0x0000],ax
+89860000 mov [bp+0x0000],ax
+89870000 mov [bx+0x0000],ax
+
+89880000 mov [bx+si+0x0000],cx
+
+89900000 mov [bx+si+0x0000],dx
+
+89980000 mov [bx+si+0x0000],bx
+
+89a00000 mov [bx+si+0x0000],sp
+
+89a80000 mov [bx+si+0x0000],bp
+
+89b00000 mov [bx+si+0x0000],si
+
+89b80000 mov [bx+si+0x0000],di
+
+
+89c0 mov ax,ax
+89c1 mov cx,ax
+89c2 mov dx,ax
+89c3 mov bx,ax
+89c4 mov sp,ax
+89c5 mov bp,ax
+89c6 mov si,ax
+89c7 mov di,ax
+
+89c8 mov ax,cx
+89c9 mov cx,cx
+89ca mov dx,cx
+89cb mov bx,cx
+89cc mov sp,cx
+89cd mov bp,cx
+89ce mov si,cx
+89cf mov di,cx
+
+89d0 mov ax,dx
+89d1 mov cx,dx
+89d2 mov dx,dx
+89d3 mov bx,dx
+89d4 mov sp,dx
+89d5 mov bp,dx
+89d6 mov si,dx
+89d7 mov di,dx
+
+89d8 mov ax,bx
+89d9 mov cx,bx
+89da mov dx,bx
+89db mov bx,bx
+89dc mov sp,bx
+89dd mov bp,bx
+89de mov si,bx
+89df mov di,bx
+
+89e0 mov ax,sp
+89e1 mov cx,sp
+89e2 mov dx,sp
+89e3 mov bx,sp
+89e4 mov sp,sp
+89e5 mov bp,sp
+89e6 mov si,sp
+89e7 mov di,sp
+
+89e8 mov ax,bp
+89e9 mov cx,bp
+89ea mov dx,bp
+89eb mov bx,bp
+89ec mov sp,bp
+89ed mov bp,bp
+89ee mov si,bp
+89ef mov di,bp
+
+89f0 mov ax,si
+89f1 mov cx,si
+89f2 mov dx,si
+89f2 mov bx,si
+89f4 mov sp,si
+89f5 mov bp,si
+89f6 mov si,si
+89f7 mov di,si
+
+89f8 mov ax,di
+89f9 mov cx,di
+89fa mov dx,di
+89fb mov bx,di
+89fc mov sp,di
+89fd mov bp,di
+89fe mov si,di
+89ff mov di,di
+
+8a00 mov al,[bx+si]
+8a01 mov al,[bx+di]
+8a02 mov al,[bp+si]
+8a03 mov al,[bp+di]
+8a04 mov al,[si]
+8a05 mov al,[di]
+8a06
+8a07 mov al,[bx]
+
+8a08 mov cl,[bx+si]
+8a09 mov cl,[bx+di]
+8a0a mov cl,[bp+si]
+8a0b mov cl,[bp+di]
+8a0c mov cl,[si]
+8a0d mov cl,[di]
+8a0e
+8a0f mov cl,[bx]
+
+8a10
+8a11
+8a12
+8a13
+8a14
+8a15
+8a16
+8a17
+8a18
+8a19
+8a1a
+8a1b
+8a1c
+8a1d
+8a1e
+8a1f
+
+8a20
+8a21
+8a22
+8a23
+8a24
+8a25
+8a26
+8a27
+8a28
+8a29
+8a2a
+8a2b
+8a2c
+8a2d
+8a2e
+8a2f
+
+8a30
+8a31
+8a32
+8a33
+8a34
+8a35
+8a36
+8a37
+8a38
+8a39
+8a3a
+8a3b
+8a3c
+8a3d
+8a3e
+8a3f
+
+8a4000 mov al,[bx+si+0x00]
+8a4100 mov al,[bx+di+0x00]
+8a4200 mov al,[bp+si+0x00]
+8a4300 mov al,[bp+di+0x00]
+8a4400 mov al,[si+0x00]
+8a4500 mov al,[di+0x00]
+8a4600 mov al,[bp+0x00]
+8a4700 mov al,[bx+0x00]
+
+8a4800 mov cl,[bx+si+0x00]
+
+8a5000 mov dl,[bx+si+0x00]
+
+8a5800 mov bl,[bx+si+0x00]
+
+8a6000 mov ah,[bx+si+0x00]
+
+8a6800 mov ch,[bx+si+0x00]
+
+8a7000 mov dh,[bx+si+0x00]
+
+8a7800 mov bh,[bx+si+0x00]
+
+
+8b00 mov ax,[bx+si]
+8b01 mov ax,[bx+di]
+8b02 mov ax,[bp+si]
+8b03 mov ax,[bp+di]
+8b04 mov ax,[si]
+8b05 mov ax,[di]
+8b06
+8b07 mov ax,[bx]
+
+8b08 mov cx,[bx+si]
+8b09 mov cx,[bx+di]
+8b0a mov cx,[bp+si]
+8b0b mov cx,[bp+di]
+8b0c mov cx,[si]
+8b0d mov cx,[di]
+8b0e
+8b0f mov cx,[bx]
+
+8b10 mov dx,[bx+si]
+
+8b18 mov bx,[bx+si]
+
+8b20 mov sp,[bx+si]
+
+8b28 mov bp,[bx+si]
+
+8b30 mov si,[bx+si]
+
+8b38 mov di,[bx+si]
+
+8b4000 mov ax,[bx+si+0x00]
+8b4100 mov ax,[bx+di+0x00]
+8b4200 mov ax,[bp+si+0x00]
+8b4300 mov ax,[bp+di+0x00]
+8b4400 mov ax,[si+0x00]
+8b4500 mov ax,[di+0x00]
+8b4600 mov ax,[bp+0x00]
+8b4700 mov ax,[bx+0x00]
+
+8b4800 mov cx,[bx+si+0x00]
+
+8b5000 mov dx,[bx+si+0x00]
+
+8b5800 mov bx,[bx+si+0x00]
+
+8b6000 mov sp,[bx+si+0x00]
+
+8b6800 mov bp,[bx+si+0x00]
+
+8b7000 mov si,[bx+si+0x00] ; mov esi,[eax+0x00]
+
+8b7800 mov di,[bx+si+0x00]
+
+
+
+
+
+
+
+8cc0 mov ax,es
+8cc1 mov cx,es
+8cc2
+8cc3
+8cc4
+8cc5
+8cc6
+8cc7
+
+8cc8 mov ax,cs
+8cc9 mov cx,cs
+8cca mov dx,cs
+8ccb mov bx,cs
+8ccc mov sp,cs
+8ccd mov bp,cs
+8cce mov si,cs
+8ccf mov di,cs
+
+8cd0 mov ax,ss
+
+8cd8 mov ax,ds
+
+8ce0 mov ax,fs
+
+8ce8 mov ax,gs
+
+8ed0 mov ss,ax
+8ed1 mov ss,cx
+8ed2 mov ss,dx
+8ed3 mov ss,bx
+8ed4 mov ss,sp
+8ed5 mov ss,bp
+8ed6 mov ss,si
+8ed7 mov ss,di
+
+8ed8 mov ds,ax
+8ed9 mov ds,cx
+8eda mov ds,dx
+8edb mov ds,bx
+8edc mov ds,sp
+8edd mov ds,bp
+8ede mov ds,si
+8edf mov ds,di
+
+8ec0 mov es,ax
+8ec1 mov es,cx
+8ec2 mov es,dx
+8ec3 mov es,bx
+8ec4 mov es,sp
+8ec5 mov es,bp
+8ec6 mov es,si
+8ec7 mov es,di
+
+
+8d4000 lea ax,[bx+si+0x00]
+8d4100 lea ax,[bx+di+0x00]
+8d4200 lea ax,[bp+si+0x00]
+8d4300 lea ax,[bp+di+0x00]
+8d4400 lea ax,[si+0x00]
+8d4500 lea ax,[di+0x00]
+8d4600 lea ax,[bp+0x00]
+8d4700 lea ax,[bx+0x00]
+
+8d4800 lea cx,[bx+si+0x00]
+
+8d5000 lea dx,[bx+si+0x00]
+
+8d5800 lea bx,[bx+si+0x00]
+
+8d6000 lea sp,[bx+si+0x00]
+
+8d6800 lea bp,[bx+si+0x00]
+
+8d7000 lea si,[bx+si+0x00]
+
+8d7800 lea di,[bx+si+0x00]
+
+8d800000 lea ax,[bx+si+0x0000]
+
+8d880000 lea cx,[bx+si+0x0000]
+
+8d900000 lea dx,[bx+si+0x0000]
+
+8d980000 lea bx,[bx+si+0x0000]
+
+8da00000 lea sp,[bx+si+0x0000]
+
+8da80000 lea bp,[bx+si+0x0000]
+
+8db00000 lea si,[bx+si+0x0000]
+
+8db80000 lea di,[bx+si+0x0000]
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+0fb6c0 movzx eax,al
+0fb6c1 movzx eax,cl
+0fb6c2 movzx eax,dl
+0fb6c3 movzx eax,bl
+0fb6c4 movzx eax,ah
+0fb6c5 movzx eax,ch
+0fb6c6 movzx eax,dh
+0fb6c7 movzx eax,bh
+
+0fb6c8 movzx ecx,al
+
+0fb6d0 movzx edx,al
+
+0fb6d8 movzx ebx,al
+
+0fb6e0 movzx esp,al
+
+0fb6e8 movzx ebp,al
+
+0fb6f0 movzx esi,al
+
+0fb6f8 movzx edi,al
+
+64890d_00000000 mov dword fs:[0x00000000],ecx
+
+64ff15_00000000 call dword fs:[0x00000000]
+
+
+
+
+
+
+
+
+
+
+
+

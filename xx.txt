@@ -2,16 +2,20 @@ windows hello
 
 
 0400 add al,0x00
+050000 add ax,0x0000
 
 0e push cs
+0d_0000 or ax,0x0000
 
+15_0000 adc ax,0x0000
 16 push ss
 17 pop ss
 
-
+1d_0000 sbb ax,0x0000
 1e push ds
 1f pop ds
 
+25_0000 and ax,0x0000
 2c00 sub al,0x00
 
 3400 xor al,0x00
@@ -59,6 +63,10 @@ windows hello
 
 680000 push 0x0000
 6a00 push 0x00
+
+6c insb
+
+6e outsb
 
 7000 jo
 71 jno
