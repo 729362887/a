@@ -104,6 +104,32 @@
 320e
 320f
 
+33c0 xor ax,ax
+33c1 xor ax,cx
+33c2 xor ax,dx
+33c3 xor ax,bx
+33c4 xor ax,sp
+33c5 xor ax,bp
+33c6 xor ax,si
+33c7 xor ax,di
+
+33c8 xor cx,ax
+
+33d0 xor dx,ax
+
+33d8 xor bx,ax
+
+33e0 xor sp,ax
+
+33e8 xor bp,ax
+
+33f0 xor si,ax
+
+33f8 xor di,ax
+
+
+
+
 39c0 cmp ax,ax
 39c1 cmp cx,ax
 39c2 cmp dx,ax

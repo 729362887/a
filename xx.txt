@@ -14,6 +14,8 @@ windows hello
 
 2c00 sub al,0x00
 
+3400 xor al,0x00
+
 3c00 cmp al,0x00
 
 40 inc ax
