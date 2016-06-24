@@ -1,41 +1,2 @@
-0fb6c0 movzx eax,al
-0fb6c1 movzx eax,cl
-0fb6c2 movzx eax,dl
-0fb6c3 movzx eax,bl
-0fb6c4 movzx eax,ah
-0fb6c5 movzx eax,ch
-0fb6c6 movzx eax,dh
-0fb6c7 movzx eax,bh
-
-0fb6c8 movzx ecx,al
-
-0fb6d0 movzx edx,al
-
-0fb6d8 movzx ebx,al
-
-0fb6e0 movzx esp,al
-
-0fb6e8 movzx ebp,al
-
-0fb6f0 movzx esi,al
-
-0fb6f8 movzx edi,al
-
-64890d_00000000 mov dword fs:[0x00000000],ecx
-
-64ff15_00000000 call dword fs:[0x00000000]
-ff15_00000000 cakk dword ds:[0x00000000]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+VimCrypt~01!õøÅ<%Ïq÷pò†ËÛâgž,ß²–}Çyôz³+AP¤3ifJ<ôSã/@„Ñk8„h`“ˆ³ÉÒ¬óbÁWu'~XýaS:ÊÈÞ@Ë¤þl¶3ìyTè¨8SÐŸ:h'	q«Û?mí*[^á”ý­%ÞÖeiU(Ã0²‘ÐN3U°&‹f~Á'(Õw$Ý9R>Œ›ö1ƒóp¡	;‹ßñœäÚr¹ê¯×+å.(ÒºD÷ä…PŸÈ
+eðþ^[mú;êÃöªâß^Ú†Ð¹žÈ7Ãoe?f¸€êzÝEƒ“ È;îGù_ÄÉžª<¬;ÈÑJ&ËG#¾®E˜5Å¨ÃøŠ&Zo›,;&½jî•ô[è³Aìã^\u¾Ö!š,œÉ§¥%©å˜}æ#£¡ô Y-y²S9çÔ£¹8Â5á?Þ~œü›ìâ-»'%;ü5£mrÒ~vè#8^ÍÌ6ƒú	M4õg›¸šT²f¯“·aåü Å³Mõ¹¯ùVþ¶74d­©»lg*¢QÊ¤+&äí&Â8ÙËð5ã/­W¸+Çw”§ŒâŠ±ž§ëqó!ç²r|³®ïÅž7;K˜ÖFÓöë·Tp0Ø5è ÿ&©

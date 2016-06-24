@@ -1,11 +1,6 @@
-8600 xchg al,[eax]
-8600 xchg al,[ecx]
-8600 xchg al,[edx]
-8600 xchg al,[ebx]
+8b0f mov ecx,dword [edi]
 
-8608 xchg cl,[eax]
-
-
+8b45_00 mov eax,dword [ebp+0x00]
 
 8b70_00 mov esi,[eax+0x00]
 8b71_00 mov esi,[ecx+0x00]
@@ -21,9 +16,27 @@
 8b7a_00 mov edi,[edx+0x00]
 8b7b_00 mov edi,[ebx+0x00]
 8b7c00_00 mov edi,[eax+eax+0x00]
-
+8b7d_00 mov edi,dword [ebp+0x00]
 8b7e_00 mov edi,[esi+0x00]
 8b7f_00 mov edi,[edi+0x00]
+
+8bd1 mov edx,ecx
+
+8bc6 mov eax,esi
+
+8bec mov ebp,esp
+
+8bf0 mov esi,eax
+
+8bff mov edi,edi
+
+
+
+
+
+
+
+
 
 
 

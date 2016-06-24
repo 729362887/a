@@ -1,19 +1,4 @@
-d3d8 rcr ax,cl
-d3d9 rcr cx,cl
-d3da rcr dx,cl
-d3db rcr bx,cl
-d3dc rcr sp,cl
-d3dd rcr bp,cl
-d3de rcr si,cl
-d3df rcr di,cl
-
-d3e0 shl ax,cl
-
-d3e8 shr ax,cl
-
-d3f0 sal ax,cl
-
-d3f8 sar ax,cl
-
-d400 
-
+VimCrypt~01!¡QÒP¤şZf†ÖQÂ¾hg
+e%•ğË~Uâ_ ÊK)ÒûOéŞËa%ºì$‡*\KâVì*lOO-ÈqğŒ5¾vk˜eW+©fá_RÓ‹8rR…µï'Íæ\QD<ÖgÀf£Ã×˜=çM,”ºĞ ªË‘@Ö%ÖÉBÆğŸwÊ=şŠš¯“¸°súSˆn
+ÿíÔgm²TiCÍ’¡™Ÿ£±Óñr+’²”
+™À¹Œ€è«öL:æ	6úºûÇSê"oÆEÛd´^³È(×Ÿ//NeË
