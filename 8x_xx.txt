@@ -582,3 +582,51 @@
 8ec5 mov es,bp
 8ec6 mov es,si
 8ec7 mov es,di
+
+
+8d4000 lea ax,[bx+si+0x00]
+8d4100 lea ax,[bx+di+0x00]
+8d4200 lea ax,[bp+si+0x00]
+8d4300 lea ax,[bp+di+0x00]
+8d4400 lea ax,[si+0x00]
+8d4500 lea ax,[di+0x00]
+8d4600 lea ax,[bp+0x00]
+8d4700 lea ax,[bx+0x00]
+
+8d4800 lea cx,[bx+si+0x00]
+
+8d5000 lea dx,[bx+si+0x00]
+
+8d5800 lea bx,[bx+si+0x00]
+
+8d6000 lea sp,[bx+si+0x00]
+
+8d6800 lea bp,[bx+si+0x00]
+
+8d7000 lea si,[bx+si+0x00]
+
+8d7800 lea di,[bx+si+0x00]
+
+8d800000 lea ax,[bx+si+0x0000]
+
+8d880000 lea cx,[bx+si+0x0000]
+
+8d900000 lea dx,[bx+si+0x0000]
+
+8d980000 lea bx,[bx+si+0x0000]
+
+8da00000 lea sp,[bx+si+0x0000]
+
+8da80000 lea bp,[bx+si+0x0000]
+
+8db00000 lea si,[bx+si+0x0000]
+
+8db80000 lea di,[bx+si+0x0000]
+
+
+
+
+
+
+
+

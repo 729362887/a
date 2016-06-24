@@ -86,6 +86,8 @@ windows hello
 96 xchg ax,si
 97 xchg ax,di
 
+a100000000 mov eax,ds:[0x00000000]
+
 a4 movsb es:[di],ds:[si]
 a5 movsw
 a6 cmpsb

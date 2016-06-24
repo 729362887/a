@@ -21,6 +21,8 @@
 
 0fb6f8 movzx edi,al
 
+64890d_00000000 mov dword fs:[0x00000000],ecx
+
 
 
 
