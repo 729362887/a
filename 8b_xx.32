@@ -1,47 +1,5 @@
-8b0f mov ecx,dword [edi]
-
-8b45_00 mov eax,dword [ebp+0x00]
-
-8b70_00 mov esi,[eax+0x00]
-8b71_00 mov esi,[ecx+0x00]
-8b72_00 mov esi,[edx+0x00]
-8b73_00 mov esi,[ebx+0x00]
-
-8b76_00 mov esi,[esi+0x00]
-8b77_00 mov esi,[edi+0x00]
-
-
-8b78_00 mov edi,[eax+0x00]
-8b79_00 mov edi,[ecx+0x00]
-8b7a_00 mov edi,[edx+0x00]
-8b7b_00 mov edi,[ebx+0x00]
-8b7c00_00 mov edi,[eax+eax+0x00]
-8b7d_00 mov edi,dword [ebp+0x00]
-8b7e_00 mov edi,[esi+0x00]
-8b7f_00 mov edi,[edi+0x00]
-
-8bd1 mov edx,ecx
-
-8bc6 mov eax,esi
-
-8bec mov ebp,esp
-
-8bf0 mov esi,eax
-
-8bff mov edi,edi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+VimCrypt~01!ıiDKO;,Üh­ÓOğä­)èj•¾ánØDäx?©€A×.±dğ0äßç–ÕŠ_r+Å3&AGïÎ<QYáMfêXÅVÙÚ°ÚC4­¸¿TĞ|­å.Uİáä!UÄËşfÑA%KUİOƒ{E£™„=RD¹>E0â–µ›ÃÉ5•@¾M1ºÓÛPË¥WÌ§²ğÍQuXEÉHuíG©åd_“–`íZÔ)~\YBô›pE‹¡HÌï/Vğ3­ŸÕ\³÷ÏÂwå8@ÔØKÊÌçú¤d8O–¸Xş8oúØSsãº±
+l')*û$$´Õ|,nÉ;9Ä*9u¿_&—¹WÔÙöÆ¨çL-şğÎV=+øÎ£A%;T-mê	§?OeÓfèßeĞá¥À¯QÄLüŠ%=v­Öq”c
+DS6¹9Åƒş¯Íú¨NÅ ¡1÷âÇ×/Td–ï³‡n8˜/"$w5_À¿á6ÜnÊâ¢Œ½? ŞvÊt>KK-¼ş‡²Yu¼ü¤D²G1tƒ†*ƒêQ²ºj›7h‚Öš÷¢òûìwéûÒ J¼co¬‡ç®™œÁ—Ç7)¥‰Âï*0Ÿ×Û_»»Â¦omV+›ŠD€¤”tÑš0avÁüã°CaIôº>¾x”ÄĞäºßXao%,…Å"Z5B–Òİm²¢.˜³
+ËıÑgK=Ê
+5ÖÓû~Ö]§B¿›O}¶åÆ©H¾P}ùœéQ£$r“ˆŞÍò]sàl@ĞXÁcŸ%bä}®¥«
