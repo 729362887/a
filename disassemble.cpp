@@ -78,6 +78,14 @@ begin:
 			pos += 6;
 			goto begin;
 		}
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			printf("%02x%02x    add dword [%s],%s\n",
+				data[pos],data[pos+1],getrm(data[pos+1]),getregister(data[pos+1])
+				);
+			pos += 2;
+			goto begin;
+		}
 		/* 01_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0x40) {
 			printf("%02x%02x%02x    add dword [%s+0x%02x],%s\n",
@@ -119,6 +127,15 @@ begin:
 			pos += 6;
 			goto begin;
 		}
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			printf("%02x%02x    add %s,dword [%s]\n",
+				data[pos],data[pos+1],
+				getregister(data[pos]),getrm(data[pos])
+				);
+			pos += 2;
+			goto begin;
+		}
 		/* 01_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0x40) {
 			printf("%02x%02x%02x    add %s,[%s+0x%02x]\n",
@@ -154,6 +171,15 @@ begin:
 		pos++;
 		goto begin;
 	case 0x08:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			printf("%02x%02x    or byte [%s],%s\n",
+				data[pos], data[pos + 1],
+				getrm(data[pos + 1]), getregisteral(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
 		/* 01_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0x40) {
 			printf("%02x%02x%02x    or byte [%s+0x%02x],%s\n",
@@ -172,7 +198,39 @@ begin:
 			goto begin;
 		}
 		goto r;
+	case 0x09:
+		/* 00_???_101 */
+		if ((data[pos + 1] & 0xc7) == 0x05) {
+			printf("%02x%02x%02x%02x%02x%02x    "
+				"or dword [0x%02x%02x%02x%02x],%s\n",
+				data[pos],data[pos+1],data[pos+2],
+				data[pos+3],data[pos+4],data[pos+5],
+				data[pos+5],data[pos+4],data[pos+3],data[pos+2],
+				getregister(data[pos+1])
+				);
+			pos += 6;
+			goto begin;
+		}
+		/* 01_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			printf("%02x%02x%02x    or dword [%s+0x%02x],%s\n",
+				data[pos], data[pos + 1], data[pos + 2],
+				getrm(data[pos + 1]), data[pos + 2], getregister(data[pos + 1])
+				);
+			pos += 3;
+			goto begin;
+		}
+		goto r;
 	case 0x0b:
+		/* 01_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			printf("%02x%02x%02x    or %s,dword [%s+0x%02x]\n",
+				data[pos],data[pos+1],data[pos+2],
+				getregister(data[pos+1]),getrm(data[pos+1]),data[pos+2]
+				);
+			pos += 3;
+			goto begin;
+		}
 		/* 11_???_??? */
 		if ( (data[pos+1] & 0xc0) == 0xc0 ) {
 			printf("%02x%02x    or %s,%s\n", data[pos],data[pos+1],
@@ -368,8 +426,16 @@ begin:
 				goto begin;
 			}
 		}
+		/* 0x9c */
+		if (data[pos + 1] == 0x9c) {
+			if (data[pos + 2] == 0xc1) {
+				printf("%02x%02x%02x    setl cl\n");
+				pos += 3;
+				goto begin;
+			}
+		}
 		/* 0xa0 */
-		if (data[pos+1] == 0xa0) {
+		if (data[pos + 1] == 0xa0) {
 			printf("%02x%02x    push fs\n", data[pos], data[pos + 1]);
 			pos += 2;
 			goto begin;
@@ -431,10 +497,18 @@ begin:
 				goto begin;
 			}
 		}
-		if (data[pos+1]==0x9c) {
-			if (data[pos+2]==0xc1) {
-				printf("%02x%02x%02x    setl cl\n");
-				pos += 3;
+		/* 0xbe */
+		if (data[pos + 1] == 0xbe) {
+			/* 00_???_101 */
+			if ((data[pos + 2] & 0xc7) == 0x05) {
+				printf("%02x%02x%02x%02x%02x%02x%02x    "
+					"movsx %s,byte [0x%02x%02x%02x%02x]\n",
+					data[pos],data[pos+1],data[pos+2],data[pos+3],
+					data[pos+4],data[pos+5],data[pos+6],
+					getregister(data[pos+2]),
+					data[pos+6],data[pos+5],data[pos+4],data[pos+3]
+					);
+				pos += 7;
 				goto begin;
 			}
 		}
@@ -449,6 +523,35 @@ begin:
 			pos += 3;
 			goto begin;
 		}
+	case 0x11:
+		/* 10_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x80) {
+			printf("%02x%02x%02x%02x%02x%02x    "
+				"adc dword [%s+0x%02x%02x%02x%02x],%s\n",
+				data[pos], data[pos + 1], data[pos + 2],
+				data[pos + 3], data[pos + 4], data[pos + 5],
+				getrm(data[pos + 1]),
+				data[pos + 5], data[pos + 4], data[pos + 3], data[pos + 2],
+				getregister(data[pos + 1])
+				);
+			pos += 6;
+			goto begin;
+		}
+		goto r;
+	case 0x13:
+		/* 10_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x80) {
+			printf("%02x%02x%02x%02x%02x%02x    "
+				"adc %s,dword [%s+0x%02x%02x%02x%02x]\n",
+				data[pos], data[pos + 1], data[pos + 2],
+				data[pos + 3], data[pos + 4], data[pos + 5],
+				getregister(data[pos + 1]), getrm(data[pos + 1]),
+				data[pos + 5], data[pos + 4], data[pos + 3], data[pos + 2]
+				);
+			pos += 6;
+			goto begin;
+		}
+		goto r;
 	case 0x14:
 		printf("%02x%02x    adc al,0x%02x\n",
 			data[pos],data[pos+1],data[pos+1]
@@ -531,10 +634,68 @@ begin:
 			goto begin;
 		}
 		goto r;
+	case 0x1c:
+		printf("%02x%02x    sbb al,0x%02x\n",
+			data[pos],data[pos+1],data[pos+1]
+			);
+		pos += 2;
+		goto begin;
+	case 0x1d:
+		printf("%02x%02x%02x%02x%02x     sbb eax,0x%02x%02x%02x%02x\n", 
+			data[pos],data[pos+1],data[pos+2],data[pos+3],data[pos+4],
+			data[pos+4],data[pos+3],data[pos+2],data[pos+1]
+			);
+		pos += 5;
+		goto begin;
 	case 0x1e:
 		printf("%02x    push ds\n", data[pos]);
 		pos++;
 		goto begin;
+	case 0x1f:
+		printf("%02x    pop ds\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0x20:
+		/* 01_???_?? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			printf("%02x%02x%02x    and byte [%s+0x%02x],%s\n", 
+				data[pos],data[pos+1],data[pos+2],
+				getrm(data[pos+1]),data[pos+2],getregisteral(data[pos+1])
+				);
+			pos += 3;
+			goto begin;
+		}
+		/* 11_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0xc0) {
+			printf("%02x%02x    and %s,%s\n",
+				data[pos],data[pos+1],getregisteral(data[pos+1]),getrmal(data[pos+1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0x22:
+		/* 01_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			printf("%02x%02x%02x    and %s,byte [%s+0x%02x]\n",
+				data[pos], data[pos + 1], data[pos + 2],
+				getregisteral(data[pos + 1]),getrm(data[pos + 1]), data[pos + 2]
+				);
+			pos += 3;
+			goto begin;
+		}
+		/* 10_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x80) {
+			printf("%02x%02x%02x%02x%02x%02x    and %s,byte [%s+0x%02x%02x%02x%02x]\n", 
+				data[pos],data[pos+1],data[pos+2],
+				data[pos+3],data[pos+4],data[pos+5],
+				getregisteral(data[pos+1]),getrm(data[pos+1]),
+				data[pos+5],data[pos+4],data[pos+3],data[pos+2]
+				);
+			pos += 6;
+			goto begin;
+		}
+		goto r;
 	case 0x23:
 		/* 00_011_??? */
 		if ((data[pos + 1] & 0xf8) == 0x18) {
@@ -543,6 +704,15 @@ begin:
 				getregister(data[pos+1]),getrm(data[pos+1])
 				);
 			pos += 2;
+			goto begin;
+		}
+		/* 01_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			printf("%02x%02x%02x    and %s,dword [%s+0x%02x]\n",
+				data[pos],data[pos+1],data[pos+2],
+				getregister(data[pos+1]),getrm(data[pos+1]),data[pos+2]
+				);
+			pos += 3;
 			goto begin;
 		}
 		/* 11_???_??? */
@@ -575,6 +745,15 @@ begin:
 		pos++;
 		goto begin;
 	case 0x28:
+		/* 01_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			printf("%02x%02x%02x    sub byte [%s+0x%02x],%s\n", 
+				data[pos],data[pos+1],data[pos+2],
+				getrm(data[pos+1]),data[pos+2],getregisteral(data[pos+2])
+				);
+			pos += 3;
+			goto begin;
+		}
 		/* 10_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0x80) {
 			printf("%02x%02x%02x%02x%02x%02x    "
@@ -598,6 +777,14 @@ begin:
 			pos += 3;
 			goto begin;
 		}
+		/* 11_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0xc0) {
+			printf("%02x%02x    sub %s,%s\n", 
+				data[pos],data[pos+1],getrm(data[pos+1]),getregister(data[pos+1])
+				);
+			pos += 2;
+			goto begin;
+		}
 		goto r;
 	case 0x2a:
 		/* 00_???_??? */
@@ -610,6 +797,14 @@ begin:
 		}
 		goto begin;
 	case 0x2b:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			printf("%02x%02x    sub %s,dword [%s]\n",
+				data[pos],data[pos+1],getregister(data[pos+1]),getrm(data[pos+1])
+				);
+			pos += 2;
+			goto begin;
+		}
 		/* 01_???_100 */
 		if ( (data[pos+1] & 0xc7 ) == 0x44 ) {
 			printf("%02x%02x%02x%02x    sub %s,%s\n",
@@ -638,6 +833,27 @@ begin:
 			goto begin;
 		}
 		goto r;
+	case 0x2c:
+		printf("%02x%02x    sub al,0x%02x\n",
+			data[pos], data[pos + 1], data[pos + 1]
+			);
+		pos += 2;
+		goto begin;
+	case 0x2d:
+		printf("%02x%02x%02x%02x%02x    sub eax,0x%02x%02x%02x%02x\n",
+			data[pos],data[pos+1],data[pos+2],data[pos+3],data[pos+4],
+			data[pos+4],data[pos+3],data[pos+2],data[pos+1]
+			);
+		pos += 5;
+		goto begin;
+	case 0x2e:
+		printf("%02x    cs\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0x2f:
+		printf("%02x    das\n", data[pos]);
+		pos++;
+		goto begin;
 	case 0x31:
 		/* 11_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0xc0) {
@@ -1126,8 +1342,29 @@ begin:
 			pos += 3;
 			goto begin;
 		}
+		/* 11_111_??? */
+		if ((data[pos + 1] & 0xf8) == 0xf8) {
+			printf("%02x%02x%02x    cmp %s,0x%02x\n", 
+				data[pos],data[pos+1],data[pos+2],
+				getregisteral(data[pos+1]),data[pos+2]
+				);
+			pos += 3;
+			goto begin;
+		}
 		goto r;
 	case 0x81:
+		/* 01_111_??? */
+		if ((data[pos + 1] & 0xf8) == 0x78) {
+			printf("%02x%02x%02x%02x%02x%02x%02x    "
+				"cmp dword [%s+0x%02x].0x%02x%02x%02x%02x\n",
+				data[pos],data[pos+1],data[pos+2],data[pos+3],
+				data[pos+4],data[pos+5],data[pos+6],
+				getrm(data[pos+1]),data[pos+2],
+				data[pos+6],data[pos+5],data[pos+4],data[pos+3]
+				);
+			pos += 7;
+			goto begin;
+		}
 		/* 11_000_??? */
 		if ((data[pos + 1] & 0xf8) == 0xc0) {
 			printf("%02x%02x%02x%02x%02x%02x    "
@@ -1188,6 +1425,18 @@ begin:
 		}
 		goto r;
 	case 0x83:
+		/* 0x05 */
+		if (data[pos + 1] == 0x05) {
+			printf("%02x%02x%02x%02x%02x%02x%02x    "
+				"add dword [0x%02x%02x%02x%02x],0x%02x\n",
+				data[pos],data[pos+1],data[pos+2],data[pos+3],
+				data[pos+4],data[pos+5],data[pos+6],
+				data[pos+5],data[pos+4],data[pos+3],data[pos+2],
+				data[pos+6]
+				);
+			pos += 7;
+			goto begin;
+		}
 		/* 00_111_100 */
 		if (data[pos+1]==0x3c) {
 			printf("%02x%02x%02x%02x    cmp dword %s,0x%02x\n",
@@ -1540,6 +1789,27 @@ begin:
 			goto begin;
 		}
 		goto r;
+	case 0x8c:
+		/* 00_000_??? */
+		if ((data[pos + 1] & 0xf8) == 0x00) {
+			printf("%02x%02x    mov word [%s],es\n", 
+				data[pos],data[pos+1],getrm(data[pos+1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		/* 10_101_??? */
+		if ((data[pos + 1] & 0xf8) == 0xa8) {
+			printf("%02x%02x%02x%02x%02x%02x    "
+				"mov word [%s+0x%02x%02x%02x%02x],gs\n",
+				data[pos], data[pos + 1], data[pos + 2], data[pos + 3], data[pos + 4], data[pos + 5],
+				getrm(data[pos + 1]),
+				data[pos + 5], data[pos + 4], data[pos + 3], data[pos + 2]
+				);
+			pos += 6;
+			goto begin;
+		}
+		goto r;
 	case 0x8d:
 		/* 00_???_100 */
 		/*
@@ -1600,6 +1870,19 @@ begin:
 			goto begin;
 		}
 		goto r;
+	case 0x8e:
+		/* 10_101_??? */
+		if ((data[pos + 1] & 0xf8) == 0xa8) {
+			printf("%02x%02x%02x%02x%02x%02x    "
+				"mov gs,word [%s+0x%02x%02x%02x%02x]\n",
+				data[pos], data[pos + 1], data[pos + 2], data[pos + 3], data[pos + 4], data[pos + 5],
+				getrm(data[pos + 1]),
+				data[pos + 5], data[pos + 4], data[pos + 3], data[pos + 2]
+				);
+			pos += 6;
+			goto begin;
+		}
+		goto r;
 	case 0x90:
 		printf("%02x    nop\n", data[pos]);
 		pos++;
@@ -1639,6 +1922,43 @@ begin:
 	case 0x99:
 		printf("%02x    cdq\n", data[pos]);
 		pos++;
+		goto begin;
+	case 0x9a:
+		printf("%02x%02x%02x%02x%02x%02x%02x    "
+			"call 0x%02x%02x:0x%02x%02x%02x%02x\n",
+			data[pos],data[pos+1],data[pos+2],data[pos+3],
+			data[pos+4],data[pos+5],data[pos+6],
+			data[pos+4],data[pos+3],data[pos+2],data[pos+1],
+			data[pos+6],data[pos+5]
+			);
+		pos += 7;
+		goto begin;
+	case 0x9b:
+		printf("%02x    fwait\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0x9c:
+		printf("%02x    pushf\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0x9d:
+		printf("%02x    popf\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0x9e:
+		printf("%02x    sahf\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0x9f:
+		printf("%02x    lahf\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0xa0:
+		printf("%02x%02x%02x%02x%02x    mov al,byte [0x%02x%02x%02x%02x]\n",
+			data[pos], data[pos + 1], data[pos + 2], data[pos + 3], data[pos + 4],
+			data[pos + 4], data[pos + 3], data[pos + 2], data[pos + 1]
+			);
+		pos += 5;
 		goto begin;
 	case 0xa1:
 		printf("%02x%02x%02x%02x%02x    mov eax,dword [0x%02x%02x%02x%02x]\n",
@@ -1683,8 +2003,35 @@ begin:
 			);
 		pos += 2;
 		goto begin;
+	case 0xa9:
+		printf("%02x%02x%02x%02x%02x    test eax,0x%02x%02x%02x%02x\n", 
+			data[pos],data[pos+1],data[pos+2],data[pos+3],data[pos+4],
+			data[pos+4],data[pos+3],data[pos+2],data[pos+1]
+			);
+		pos += 5;
+		goto begin;
+	case 0xaa:
+		printf("%02x    stos byte es:[edi],al\n", data[pos]);
+		pos += 1;
+		goto begin;
+	case 0xab:
+		printf("%02x    stos byte es:[edi],eax\n", data[pos]);
+		pos += 1;
+		goto begin;
+	case 0xac:
+		printf("%02x    lods al,byte es:[edi]\n", data[pos]);
+		pos += 1;
+		goto begin;
+	case 0xad:
+		printf("%02x    lods eax,byte es:[edi]\n", data[pos]);
+		pos += 1;
+		goto begin;
+	case 0xae:
+		printf("%02x    scas al,byte es:[edi]\n", data[pos]);
+		pos += 1;
+		goto begin;
 	case 0xaf:
-		printf("%02x    scas dword ptr es:[edi]\n",data[pos]);
+		printf("%02x    scas eax,dword ptr es:[edi]\n",data[pos]);
 		pos += 1;
 		goto begin;
 	case 0xb0:
@@ -1793,6 +2140,16 @@ begin:
 				getrm(data[pos+1]),data[pos+2]
 				);
 			pos += 3;
+			goto begin;
+		}
+		/* 01_110_100 0x74 */
+		if (data[pos+1] == 0x74) {
+			printf("%02x%02x%02x%02x%02x    "
+				"sal byte %s,0x%02x\n",
+				data[pos], data[pos + 1], data[pos + 2], data[pos + 3], data[pos + 4],
+				getsib8(data[pos + 2], data[pos + 3]), data[pos + 4]
+				);
+			pos += 5;
 			goto begin;
 		}
 		/* 10_001_??? */
@@ -1906,6 +2263,10 @@ begin:
 		goto begin;
 	case 0xcc:
 		printf("%02x    int3\n", data[pos]);
+		pos++;
+		goto begin;
+	case 0xcf:
+		printf("%02x    iretd\n", data[pos]);
 		pos++;
 		goto begin;
 	case 0xd1:
@@ -2095,6 +2456,18 @@ begin:
 		pos += 1;
 		goto begin;
 	case 0xf6:
+		/* 0x05 */
+		if ( data[pos+1] == 0x05 ) {
+			printf("%02x%02x%02x%02x%02x%02x%02x    "
+				"test byte [0x%02x%02x%02x%02x],0x%02x\n",
+				data[pos],data[pos+1],data[pos+2],data[pos+3],
+				data[pos+4],data[pos+5],data[pos+6],
+				data[pos+5],data[pos+4],data[pos+3],data[pos+2],
+				data[pos+6]
+				);
+			pos += 7;
+			goto begin;
+		}
 		/* 01_000_??? */
 		if ((data[pos + 1] & 0xf8) == 0x40) {
 			printf("%02x%02x%02x%02x    test byte [%s+0x%02x],0x%02x\n", 
@@ -2183,6 +2556,17 @@ begin:
 		printf("%02x    std\n", data[pos]);
 		pos++;
 		goto begin;
+	case 0xfe:
+		/* 0x05 */
+		if (data[pos + 1] == 0x05) {
+			printf("%02x%02x%02x%02x%02x%02x    inc byte [0x%02x%02x%02x%02x]\n",
+				data[pos], data[pos + 1], data[pos + 2],
+				data[pos + 3], data[pos + 4], data[pos + 5],
+				data[pos + 5], data[pos + 4], data[pos + 3], data[pos + 2]
+				);
+			pos += 6;
+			goto begin;
+		}
 	case 0xff:
 		/* 0x05 */
 		if (data[pos + 1] == 0x05) {
