@@ -167,7 +167,11 @@ char* disassemble32(char* arg0,int* arg1 ) {
 		pos += 5;
 		goto begin;
 	case 0x06:
-		snprintf(buffer,sizeof(buffer),"%02x    push es", data[pos]);
+		snprintf(buffer, sizeof(buffer), "%02x    push es", data[pos]);
+		pos++;
+		goto begin;
+	case 0x07:
+		snprintf(buffer, sizeof(buffer), "%02x    pop es", data[pos]);
 		pos++;
 		goto begin;
 	case 0x08:
@@ -224,7 +228,7 @@ char* disassemble32(char* arg0,int* arg1 ) {
 		if ((data[pos + 1] & 0xc0) == 0xc0) {
 			snprintf(buffer, sizeof(buffer), "%02x%02x    or %s,%s",
 				data[pos], data[pos + 1],
-				getregister(data[pos + 1]),getrm(data[pos + 1])
+				getrm(data[pos + 1]), getregister(data[pos + 1])
 				);
 			pos += 2;
 			goto begin;
@@ -1892,6 +1896,14 @@ char* disassemble32(char* arg0,int* arg1 ) {
 			pos += 6;
 			goto begin;
 		}
+		/* 11_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0xc0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    mov %s,%s",
+				data[pos], data[pos + 1], getrm(data[pos + 1]), getregister(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
 		goto r;
 	case 0x8a:
 		/* 00_???_??? */
@@ -2359,7 +2371,7 @@ char* disassemble32(char* arg0,int* arg1 ) {
 	case 0xc1:
 		/* 11_100_??? */
 		if ((data[pos + 1] & 0xf8) == 0xe0) {
-			snprintf(buffer,sizeof(buffer),"%02x%02x%02x   shl %s,0x02x",
+			snprintf(buffer,sizeof(buffer),"%02x%02x%02x   shl %s,0x%02x",
 				data[pos],data[pos+1],data[pos+2],
 				getrm(data[pos+1]),data[pos+2]
 				);
@@ -2377,7 +2389,7 @@ char* disassemble32(char* arg0,int* arg1 ) {
 		}
 		/* 11_111_??? */
 		if ((data[pos + 1] & 0xf8) == 0xf8) {
-			snprintf(buffer,sizeof(buffer),"%02x%02x%02x   sar %s,0x02x",
+			snprintf(buffer,sizeof(buffer),"%02x%02x%02x   sar %s,0x%02x",
 				data[pos], data[pos + 1], data[pos + 2],
 				getrm(data[pos + 1]), data[pos + 2]
 				);
@@ -2496,6 +2508,14 @@ char* disassemble32(char* arg0,int* arg1 ) {
 		}
 		goto r;
 	case 0xd1:
+		/* 11_100_??? */
+		if ((data[pos + 1] & 0xf8) == 0xe0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    shl %s,1",
+				data[pos], data[pos + 1], getrm(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
 		/* 11_101_??? */
 		if ((data[pos + 1] & 0xf8) == 0xe8) {
 			snprintf(buffer,sizeof(buffer),"%02x%02x    shr %s,1",

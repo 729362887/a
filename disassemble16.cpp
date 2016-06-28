@@ -19,6 +19,28 @@ char* disassemble16(char* arg0, int* arg1) {
 	memset(buffer, 0, sizeof(buffer));
 
 	switch (data[pos]) {
+	case 0x01:
+		/* 11_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0xc0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    add %s,%s",
+				data[pos], data[pos + 1],
+				getrm(data[pos + 1]), getregister(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0x02:
+		/* 01_???_110 */
+		if ((data[pos + 1] & 0xc7) == 0x46) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x    add %s,[bp+0x%02x]",
+				data[pos], data[pos + 1], data[pos + 2],
+				getregisteral(data[pos + 1]), data[pos + 2]
+				);
+			pos += 3;
+			goto begin;
+		}
+		goto r;
 	case 0x03:
 		/* 00_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0x00) {
@@ -29,7 +51,23 @@ char* disassemble16(char* arg0, int* arg1) {
 			pos += 2;
 			goto begin;
 		}
+		/* 01_???_110 */
+		if ((data[pos + 1] & 0xc7) == 0x46) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x    add %s,[bp+0x%02x]",
+				data[pos], data[pos + 1], data[pos + 2],
+				getregister(data[pos + 1]), data[pos+2]
+				);
+			pos += 3;
+			goto begin;
+		}
 		goto r;
+	case 0x05:
+		snprintf(buffer, sizeof(buffer), "%02x%02x%02x    add ax,0x%02x%02x", 
+			data[pos],data[pos+1],data[pos+2],
+			data[pos+2],data[pos+1]
+			);
+		pos+=3;
+		goto begin;
 	case 0x06:
 		snprintf(buffer, sizeof(buffer), "%02x    push es", data[pos]);
 		pos++;
@@ -40,7 +78,7 @@ char* disassemble16(char* arg0, int* arg1) {
 		goto begin;
 	case 0x0f:
 		/* 0x84 */
-		if (data[pos + 1] == 0x85) {
+		if (data[pos + 1] == 0x84) {
 			snprintf(buffer, sizeof(buffer), "%02x%02x%02x%02x    jz +0x%02x%02x",
 				data[pos], data[pos + 1], data[pos + 2], data[pos + 3],
 				data[pos + 3], data[pos + 2]
@@ -69,6 +107,17 @@ char* disassemble16(char* arg0, int* arg1) {
 			goto begin;
 		}
 		goto r;
+	case 0x1b:
+		/* 01_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x    sbb %s,[%s+0x%02x]",
+				data[pos], data[pos + 1], data[pos + 2],
+				getregister(data[pos + 1]), getrm2(data[pos + 1]), data[pos + 2]
+				);
+			pos += 3;
+			goto begin;
+		}
+		goto r;
 	case 0x1e:
 		snprintf(buffer, sizeof(buffer), "%02x    push ds", data[pos]);
 		pos++;
@@ -77,6 +126,17 @@ char* disassemble16(char* arg0, int* arg1) {
 		snprintf(buffer, sizeof(buffer), "%02x    pop ds", data[pos]);
 		pos++;
 		goto begin;
+	case 0x20:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    and [%s],%s",
+				data[pos], data[pos + 1],
+				getrm2(data[pos + 1]), getregisteral(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
 	case 0x23:
 		/* 00_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0x00) {
@@ -110,7 +170,92 @@ char* disassemble16(char* arg0, int* arg1) {
 			);
 		pos += 3;
 		goto begin;
+	case 0x28:
+		/* 01_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x40) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x    sub [%s+0x%02x],%s",
+				data[pos], data[pos + 1], data[pos + 2],
+				getrm2(data[pos + 1]),data[pos+2],getregisteral(data[pos + 1])
+				);
+			pos += 3;
+			goto begin;
+		}
+		goto r;
+	case 0x29:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    sub [%s],%s",
+				data[pos], data[pos + 1],
+				getrm2(data[pos + 1]), getregister(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0x2b:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    sub %s,[%s]",
+				data[pos], data[pos + 1],
+				getregister(data[pos + 1]), getrm2(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		/* 01_???_110 */
+		if ((data[pos + 1] & 0xc7) == 0x46) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x    sub %s,[bp+0x%02x]",
+				data[pos], data[pos + 1], data[pos + 2],
+				getregister(data[pos + 1]), data[pos + 2]
+				);
+			pos += 3;
+			goto begin;
+		}
+		goto r;
+	case 0x2c:
+		snprintf(buffer, sizeof(buffer), "%02x%02x    sub al,0x%02x",
+			data[pos], data[pos + 1], 
+			data[pos + 1]
+			);
+		pos += 2;
+		goto begin;
+	case 0x2d:
+		snprintf(buffer, sizeof(buffer), "%02x%02x%02x    sub ax,0x%02x%02x",
+			data[pos], data[pos + 1], data[pos + 2],
+			data[pos + 2], data[pos + 1]
+			);
+		pos += 3;
+		goto begin;
+	case 0x30:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    xor [%s],%s",
+				data[pos], data[pos + 1],
+				getrm2(data[pos + 1]), getregisteral(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		/* 11_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0xc0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    xor %s,%s",
+				data[pos], data[pos + 1],
+				getrmal(data[pos + 1]), getregisteral(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
 	case 0x31:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    xor [%s],%s",
+				data[pos], data[pos + 1],
+				getrm2(data[pos + 1]), getregister(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
 		/* 11_???_??? */
 		if ((data[pos + 1] & 0xc0) == 0xc0) {
 			snprintf(buffer, sizeof(buffer), "%02x%02x    xor %s,%s",
@@ -121,15 +266,82 @@ char* disassemble16(char* arg0, int* arg1) {
 			goto begin;
 		}
 		goto r;
+	case 0x32:
+		/* 00_???_110 */
+		if ((data[pos + 1] & 0xc7) == 0x06) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x%02x    xor %s,ds:0x%02x%02x",
+				data[pos], data[pos + 1], data[pos + 2], data[pos + 3],
+				getregisteral(data[pos + 1]), data[pos + 3], data[pos + 2]
+				);
+			pos += 4;
+			goto begin;
+		}
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    xor %s,[%s]",
+				data[pos], data[pos + 1],
+				getregisteral(data[pos + 1]), getrm2(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0x33:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    xor %s,[%s]",
+				data[pos], data[pos + 1],
+				getregisteral(data[pos + 1]), getrm2(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0x35:
+		snprintf(buffer, sizeof(buffer), "%02x%02x%02x    xor ax,0x%02x%02x", 
+			data[pos],data[pos+1],data[pos+2],
+			data[pos+2],data[pos+1]
+			);
+		pos+=3;
+		goto begin;
 	case 0x36:
 		snprintf(buffer, sizeof(buffer), "%02x    ss", data[pos]);
 		pos++;
 		goto begin;
+	case 0x39:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    cmp [%s],%s",
+				data[pos], data[pos + 1],
+				getrm2(data[pos + 1]), getregister(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0x3a:
+		/* 00_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0x00) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    cmp %s,[%s]",
+				data[pos], data[pos + 1],
+				getregisteral(data[pos + 1]), getrm2(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
 	case 0x3c:
 		snprintf(buffer, sizeof(buffer), "%02x%02x    cmp al,0x%02x",
 			data[pos], data[pos + 1], data[pos + 1]
 			);
 		pos += 2;
+		goto begin;
+	case 0x3d:
+		snprintf(buffer, sizeof(buffer), "%02x%02x%02x    cmp ax,0x%02x%02x",
+			data[pos], data[pos + 1], data[pos + 2],
+			data[pos + 2], data[pos + 1]
+			);
+		pos += 3;
 		goto begin;
 	case 0x40:
 		snprintf(buffer, sizeof(buffer), "%02x    inc ax", data[pos]);
@@ -267,7 +479,33 @@ char* disassemble16(char* arg0, int* arg1) {
 		snprintf(buffer, sizeof(buffer), "%02x    popaw", data[pos]);
 		pos++;
 		goto begin;
+	case 0x65:
+		snprintf(buffer, sizeof(buffer), "%02x%02x%02x    jp +0x%02x%02x",
+			data[pos],data[pos+1],data[pos+2],data[pos+2],data[pos+1]
+			);
+		pos+=3;
+		goto begin;
 	case 0x66:
+		goto begin;
+	case 0x6e:
+		snprintf(buffer, sizeof(buffer), "%02x    outsb", data[pos]);
+		pos++;
+		goto begin;
+	case 0x6f:
+		snprintf(buffer, sizeof(buffer), "%02x    outsw", data[pos]);
+		pos++;
+		goto begin;
+	case 0x72:
+		snprintf(buffer, sizeof(buffer), "%02x%02x    jb +0x%02x",
+			data[pos], data[pos + 1], data[pos + 1]
+			);
+		pos += 2;
+		goto begin;
+	case 0x73:
+		snprintf(buffer, sizeof(buffer), "%02x%02x    jnb +0x%02x",
+			data[pos], data[pos + 1], data[pos + 1]
+			);
+		pos += 2;
 		goto begin;
 	case 0x74:
 		snprintf(buffer, sizeof(buffer), "%02x%02x    jz +0x%02x",
@@ -351,6 +589,15 @@ char* disassemble16(char* arg0, int* arg1) {
 			pos += 3;
 			goto begin;
 		}
+		/* 11_010_??? */
+		if ((data[pos + 1] & 0xf8) == 0xd0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x    adc %s,0x%02x",
+				data[pos], data[pos + 1], data[pos + 2],
+				getrmal(data[pos + 1]), data[pos + 2]
+				);
+			pos += 3;
+			goto begin;
+		}
 		goto begin;
 	case 0x83:
 		/* 11_000_??? */
@@ -369,6 +616,17 @@ char* disassemble16(char* arg0, int* arg1) {
 			snprintf(buffer, sizeof(buffer), "%02x%02x    test %s,%s",
 				data[pos], data[pos + 1],
 				getregisteral(data[pos + 1]), getrmal(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0x85:
+		/* 11_???_??? */
+		if ((data[pos + 1] & 0xc0) == 0xc0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    test %s,%s",
+				data[pos], data[pos + 1],
+				getregister(data[pos + 1]), getrm(data[pos + 1])
 				);
 			pos += 2;
 			goto begin;
@@ -516,6 +774,46 @@ char* disassemble16(char* arg0, int* arg1) {
 			goto begin;
 		}
 		goto r;
+	case 0x90:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg ax,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x91:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg cx,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x92:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg dx,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x93:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg bx,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x94:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg sp,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x95:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg bp,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x96:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg si,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x97:
+		snprintf(buffer, sizeof(buffer), "%02x    xchg di,ax", data[pos]);
+		pos++;
+		goto begin;
+	case 0x98:
+		snprintf(buffer, sizeof(buffer), "%02x    cbw", data[pos]);
+		pos++;
+		goto begin;
+	case 0x99:
+		snprintf(buffer, sizeof(buffer), "%02x    cwd", data[pos]);
+		pos++;
+		goto begin;
 	case 0xa4:
 		snprintf(buffer, sizeof(buffer), "%02x    movsb", data[pos]);
 		pos++;
@@ -658,6 +956,43 @@ char* disassemble16(char* arg0, int* arg1) {
 			goto begin;
 		}
 		goto r;
+	case 0xd1:
+		/* 11_100_??? */
+		if ((data[pos + 1] & 0xf8) == 0xe0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    shl %s,1",
+				data[pos], data[pos + 1], 
+				getrm(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0xd3:
+		/* 11_100_??? */
+		if ((data[pos + 1] & 0xf8) == 0xe0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    shl %s,1",
+				data[pos], data[pos + 1],
+				getrm(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		/* 11_101_??? */
+		if ((data[pos + 1] & 0xf8) == 0xe8) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    shl %s,cl",
+				data[pos], data[pos + 1],
+				getrm(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
+	case 0xe2:
+		snprintf(buffer, sizeof(buffer), "%02x%02x    loop +0x%02x",
+			data[pos], data[pos + 1], data[pos + 1]
+			);
+		pos += 2;
+		goto begin;
 	case 0xe3:
 		snprintf(buffer, sizeof(buffer), "%02x%02x    jcxz +0x%02x",
 			data[pos], data[pos + 1], data[pos + 1]
@@ -698,10 +1033,56 @@ char* disassemble16(char* arg0, int* arg1) {
 			);
 		pos += 5;
 		goto begin;
+	case 0xeb:
+		snprintf(buffer, sizeof(buffer), "%02x%02x    jmp +0x%02x",
+			data[pos], data[pos + 1], data[pos + 1]
+			);
+		pos += 2;
+		goto begin;
+	case 0xf0:
+		snprintf(buffer, sizeof(buffer), "%02x    lock", data[pos]);
+		pos++;
+		goto begin;
+	case 0xf1:
+		snprintf(buffer, sizeof(buffer), "%02x    icebp", data[pos]);
+		pos++;
+		goto begin;
+	case 0xf2:
+		snprintf(buffer, sizeof(buffer), "%02x    repnz", data[pos]);
+		pos++;
+		goto begin;
 	case 0xf3:
 		snprintf(buffer, sizeof(buffer), "%02x    rep", data[pos]);
 		pos++;
 		goto begin;
+	case 0xf4:
+		snprintf(buffer, sizeof(buffer), "%02x    hlt", data[pos]);
+		pos++;
+		goto begin;
+	case 0xf5:
+		snprintf(buffer, sizeof(buffer), "%02x    cmc", data[pos]);
+		pos++;
+		goto begin;
+	case 0xf7:
+		/* 11_110_??? */
+		if ((data[pos + 1] & 0xf8) == 0xf0) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    div %s",
+				data[pos], data[pos + 1],
+				getrm(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		/* 11_111_??? */
+		if ((data[pos + 1] & 0xf8) == 0xf8) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x    idiv %s",
+				data[pos], data[pos + 1],
+				getrm(data[pos + 1])
+				);
+			pos += 2;
+			goto begin;
+		}
+		goto r;
 	case 0xfa:
 		snprintf(buffer, sizeof(buffer), "%02x    cli", data[pos]);
 		pos++;
@@ -718,6 +1099,16 @@ char* disassemble16(char* arg0, int* arg1) {
 		snprintf(buffer, sizeof(buffer), "%02x    std", data[pos]);
 		pos++;
 		goto begin;
+	case 0xff:
+		/* 0x76 */
+		if ( data[pos+1] == 0x76 ) {
+			snprintf(buffer, sizeof(buffer), "%02x%02x%02x    push [bp+0x%02x]", 
+				data[pos], data[pos+1], data[pos+2], data[pos+2]
+				);
+			pos+=3;
+			goto begin;
+		}
+		goto r;
 	default:
 		goto r;
 	}
