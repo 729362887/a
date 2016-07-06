@@ -1,0 +1,36 @@
+﻿生成启动时间为 2016/7/6 10:11:02。
+     1>项目“D:\visual studio 2015\Projects\monday\monday.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\visual studio 2015\Projects\monday\Debug\monday.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\visual studio 2015\Projects\monday\Debug\monday.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\visual studio 2015\Projects\monday\Debug\monday.lib" /MACHINE:X86 Debug\0f.obj
+         Debug\0f_opcode.obj
+         Debug\16.obj
+         Debug\32.obj
+         Debug\dis32.obj
+         Debug\hex.obj
+         Debug\imm16.obj
+         Debug\imm32.obj
+         Debug\imm8.obj
+         Debug\main.obj
+         Debug\modrm16.obj
+         Debug\modrm32.obj
+         Debug\moffs16.obj
+         Debug\moffs32.obj
+         Debug\opcode.obj
+         Debug\prefix.obj
+         Debug\ptr16.obj
+         Debug\r16.obj
+         Debug\r32.obj
+         Debug\r8.obj
+         Debug\rel16.obj
+         Debug\rel32.obj
+         Debug\rel8.obj
+         Debug\sib32.obj
+         monday.vcxproj -> D:\visual studio 2015\Projects\monday\Debug\monday.exe
+     1>已完成生成项目“D:\visual studio 2015\Projects\monday\monday.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:00.47

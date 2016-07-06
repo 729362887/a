@@ -142,15 +142,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="0f.cpp" />
+    <ClCompile Include="0f_opcode.cpp" />
+    <ClCompile Include="16.cpp" />
+    <ClCompile Include="32.cpp" />
     <ClCompile Include="dis32.cpp" />
     <ClCompile Include="hex.cpp" />
+    <ClCompile Include="imm16.cpp" />
     <ClCompile Include="imm32.cpp" />
     <ClCompile Include="imm8.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="modrm.cpp" />
+    <ClCompile Include="modrm16.cpp" />
+    <ClCompile Include="modrm32.cpp" />
+    <ClCompile Include="moffs16.cpp" />
+    <ClCompile Include="moffs32.cpp" />
     <ClCompile Include="opcode.cpp" />
+    <ClCompile Include="prefix.cpp" />
+    <ClCompile Include="ptr16.cpp" />
+    <ClCompile Include="r16.cpp" />
     <ClCompile Include="r32.cpp" />
     <ClCompile Include="r8.cpp" />
+    <ClCompile Include="rel16.cpp" />
+    <ClCompile Include="rel32.cpp" />
+    <ClCompile Include="rel8.cpp" />
     <ClCompile Include="sib32.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

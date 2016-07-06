@@ -21,9 +21,6 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="modrm.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="r32.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -43,6 +40,51 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="sib32.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rel8.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="0f.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="0f_opcode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rel32.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="r16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modrm32.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="modrm16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="imm16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rel16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="moffs16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="moffs32.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="prefix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ptr16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="32.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
