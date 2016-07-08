@@ -5,6 +5,7 @@ extern char* opcode(unsigned char* arg0);
 extern char* prefix(unsigned char* arg0, int* arg1);
 extern void r_rm(unsigned char* arg0, int* arg1, char** r, char** rm, char** r8, char** r32, char** sreg, char** rm8, char** rm32);
 extern char* hex(unsigned char* arg0, int arg1);
+extern char* _0f_dis16(unsigned char* arg0, int* arg1);
 
 static char* _0(unsigned char* arg0);
 static char* _1(unsigned char* arg0);
@@ -31,6 +32,35 @@ char* dis16(unsigned char* arg0, int* arg1) {
 
 	switch (arg0[index])
 	{
+	case 0x00:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm8, r8);
+		return buffer;
+	case 0x01:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm, r);
+		return buffer;
+	case 0x02:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, r8, rm8);
+		return buffer;
+	case 0x03:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, r, rm);
+		return buffer;
+	case 0x09:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1+count), p, o,rm,r);
+		return buffer;
+	case 0x0f:
+		return _0f_dis16(arg0, arg1);
+	case 0x1e:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s ds", hex(arg0, index + 1 ), p, o);
+		return buffer;
+	case 0x24:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s al,0x%02x ", hex(arg0, index + 1+1), p, o,arg0[index+1]);
+		return buffer;
+	case 0x25:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s ax,0x%02x%02x ", hex(arg0, index + 1 + 2), p, o, arg0[index + 1+1], arg0[index + 1 ]);
+		return buffer;
+	case 0x30:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm8, r8);
+		return buffer;
 	case 0x31:
 		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm, r);
 		return buffer;
@@ -92,14 +122,50 @@ char* dis16(unsigned char* arg0, int* arg1) {
 	case 0x80:
 		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,0x%02x", hex(arg0, index + 1 + count + 1), p, o, rm8, arg0[index + 1 + count]);
 		return buffer;
+	case 0x81:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,0x%02x%02x", hex(arg0, index + 1 + count + 2), p, o, rm, arg0[index + 1 + count+1], arg0[index + 1 + count]);
+		return buffer;
+	case 0x83:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,0x%02x", hex(arg0, index + 1 + count+1), p, o, rm, arg0[index+1+count]);
+		return buffer;
+	case 0x84:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count ), p, o, rm8, r8 );
+		return buffer;
+	case 0x85:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm, r);
+		return buffer;
 	case 0x88:
 		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm, r8);
 		return buffer;
 	case 0x89:
-		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + 1), p, o, rm, r);
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm, r);
+		return buffer;
+	case 0x8a:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, r8, rm8 );
+		return buffer;
+	case 0x8b:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, r, rm);
+		return buffer;
+	case 0x8c:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, rm, sreg);
+		return buffer;
+	case 0x8d:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, r, rm);
 		return buffer;
 	case 0x8e:
 		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, sreg, rm);
+		return buffer;
+	case 0xa0:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s al,[0x%02x%02x]", hex(arg0, index + 1 + 2), p, o, arg0[index + 1 + 1], arg0[index + 1]);
+		return buffer;
+	case 0xa1:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s ax,[0x%02x%02x]", hex(arg0, index + 1 + 2), p, o, arg0[index + 1 + 1], arg0[index + 1]);
+		return buffer;
+	case 0xa2:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s [0x%02x%02x],al", hex(arg0, index + 1 + 2), p, o, arg0[index + 1 + 1], arg0[index + 1]);
+		return buffer;
+	case 0xa3:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s [0x%02x%02x],ax", hex(arg0, index + 1 + 2), p, o, arg0[index+1+1],arg0[index+1]);
 		return buffer;
 	case 0xb0:
 	case 0xb1:
@@ -121,6 +187,23 @@ char* dis16(unsigned char* arg0, int* arg1) {
 	case 0xbf:
 		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,0x%02x%02x", hex(arg0, index + 1 + 2), p, o, _1(&arg0[index]), arg0[index + 2], arg0[index + 1]);
 		return buffer;
+	case 0xc0:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,0x%02x", hex(arg0, index + 1 + count + 1), p, o, rm8, arg0[index + 1 + count]);
+		return buffer;
+	case 0xc1:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,0x%02x", hex(arg0, index + 1 + count + 1), p, o, rm, arg0[index + 1 + count]);
+		return buffer;
+	case 0xc5:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,%s", hex(arg0, index + 1 + count), p, o, r, rm);
+		return buffer;
+	case 0xd1:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s,1", hex(arg0, index + 1 + count), p, o, rm);
+		return buffer;
+	case 0xe0:
+	case 0xe1:
+	case 0xe2:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s +0x%02x", hex(arg0, index + 1 + 1), p, o, arg0[index + 1]);
+		return buffer;
 	case 0xe4:
 		snprintf(buffer, sizeof(buffer), "%s    %s %s al,0x%02x", hex(arg0, index + 1 + 1), p, o, arg0[index + 1]);
 		return buffer;
@@ -132,6 +215,9 @@ char* dis16(unsigned char* arg0, int* arg1) {
 		return buffer;
 	case 0xfa:
 		snprintf(buffer, sizeof(buffer), "%s    %s %s", hex(arg0, index + 1), p, o);
+		return buffer;
+	case 0xff:
+		snprintf(buffer, sizeof(buffer), "%s    %s %s %s", hex(arg0, index + 1+count), p, o, rm);
 		return buffer;
 	default:
 		return "unknown";
